@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 class QuestionGenerator(SocraticPredictor):
     """Generate Socratic questions for a given context."""
     
-    def __init__(self):
+    def __init__(self) -> None:
         instructions = """Generate insightful Socratic questions that:
         1. Probe deeper understanding
         2. Challenge assumptions
@@ -17,7 +17,7 @@ class QuestionGenerator(SocraticPredictor):
         4. Examine evidence
         5. Consider alternative viewpoints
         Only generate questions, no other text."""
-        
+
         super().__init__(
             signature="context -> questions: list[str]",
             instructions=instructions
@@ -42,7 +42,7 @@ class QuestionGenerator(SocraticPredictor):
 class SocraticDialogue:
     """Manages Socratic dialogue flow."""
     
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize dialogue manager."""
         self.generate = QuestionGenerator()
         self.conversation_history: List[Dict[str, Any]] = []
@@ -73,6 +73,6 @@ class SocraticDialogue:
         """
         return self.conversation_history
         
-    def clear_history(self):
+    def clear_history(self) -> None:
         """Clear conversation history."""
         self.conversation_history = []
