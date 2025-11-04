@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 class CreativityGame:
     """Game focused on creative reasoning and generation."""
     
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize creativity game."""
         self.create = SocraticPredictor(
             signature="prompt: str -> creative_output: str",
@@ -21,14 +21,14 @@ class CreativityGame:
             5. Balance novelty with usefulness"""
         )
         
-    def forward(self, prompt: str) -> Any:
+    def forward(self, prompt: str) -> str:
         """Generate creative output for a prompt.
-        
+
         Args:
             prompt: Input prompt for creative generation
-            
+
         Returns:
-            Generated creative output
+            Generated creative output (string)
         """
         try:
             result = self.create.forward(prompt=prompt)

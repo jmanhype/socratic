@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 class ReasoningJudge:
     """Judge module for evaluating reasoning outputs with preference learning."""
     
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize the reasoning judge."""
         self.lm = SocraticLM()
         
@@ -61,7 +61,9 @@ class ReasoningJudge:
             else:
                 # Comparison between two outputs
                 if not output1 or not output2:
-                    raise ValueError("Both outputs must be provided for comparison")
+                    raise ValueError("Both outputs must be non-empty strings for comparison")
+                if not isinstance(output1, str) or not isinstance(output2, str):
+                    raise TypeError("Both outputs must be strings")
                 return self.preference_judge(output1=output1, output2=output2)
         except Exception as e:
             logger.error(f"Judgment failed: {str(e)}")
